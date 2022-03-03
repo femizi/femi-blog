@@ -6,12 +6,13 @@ import matter from "gray-matter";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import Header from "../../components/Header";
 import { useState } from "react";
+import Head from "next/head";
 
-const components = {  SyntaxHighlighter }
+const components = { SyntaxHighlighter };
 
 const PostPage = ({ frontMatter: { title, date }, mdxSource }) => {
-  const [dark, setdark] = useState(false)
-  
+  const [dark, setdark] = useState(false);
+
   function setTheme() {
     setDark(!dark);
   }
@@ -23,46 +24,57 @@ const PostPage = ({ frontMatter: { title, date }, mdxSource }) => {
   //   (isSystemDark) => setDark(isSystemDark)
   // );
   return (
-    <div >
-     <Header setTheme={setTheme}/> 
-     <main className="px-24 py-12">
-     <h1 className="fontbold text-6xl pb-4">{title}</h1>
-      <MDXRemote {...mdxSource} components={components}/>
-     </main>
+    <div>
+      <Head>
+        <title>{title}</title>
+        <meta property="og:description" content={description} />
+        <meta property="og:site_name" content="Femi's Blog" />
+        <meta property="og:type" content="article" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:creator" content="@sonofpharoh" />
+      </Head>
+      <Header setTheme={setTheme} />
+      <main className="px-24 py-12">
+        <h1 className="fontbold text-6xl pb-4">{title}</h1>
+        <MDXRemote {...mdxSource} components={components} />
+      </main>
     </div>
-  )
-}
+  );
+};
 
 const getStaticPaths = async () => {
-  const files = fs.readdirSync(path.join('posts'))
+  const files = fs.readdirSync(path.join("posts"));
 
-  const paths = files.map(filename => ({
+  const paths = files.map((filename) => ({
     params: {
-      slug: filename.replace('.mdx', '')
-    }
-  }))
+      slug: filename.replace(".mdx", ""),
+    },
+  }));
 
   return {
     paths,
-    fallback: false
-  }
-}
+    fallback: false,
+  };
+};
 
 const getStaticProps = async ({ params: { slug } }) => {
-  const markdownWithMeta = fs.readFileSync(path.join('posts',
-    slug + '.mdx'), 'utf-8')
+  const markdownWithMeta = fs.readFileSync(
+    path.join("posts", slug + ".mdx"),
+    "utf-8"
+  );
 
-  const { data: frontMatter, content } = matter(markdownWithMeta)
-  const mdxSource = await serialize(content)
+  const { data: frontMatter, content } = matter(markdownWithMeta);
+  const mdxSource = await serialize(content);
 
   return {
     props: {
       frontMatter,
       slug,
-      mdxSource
-    }
-  }
-}
+      mdxSource,
+    },
+  };
+};
 
-export { getStaticProps, getStaticPaths }
-export default PostPage
+export { getStaticProps, getStaticPaths };
+export default PostPage;

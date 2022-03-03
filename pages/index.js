@@ -4,7 +4,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import Link from "next/link";
-import { useMediaQuery } from 'react-responsive';
+import { useMediaQuery } from "react-responsive";
 import { FirstBlogPost } from "../components/FirstBlogPost";
 import { Title } from "../components/Title";
 import Header from "../components/Header";
@@ -27,7 +27,7 @@ export default function Home({ posts }) {
   }
   const first = posts[0];
   const remainder = posts.slice(1);
-  
+
   const d = new Date();
   let year = d.getFullYear();
 
@@ -40,17 +40,28 @@ export default function Home({ posts }) {
       }
     >
       <Head>
-      <title>Femi's Blog</title>
-      <meta name="description" content="This is a blog talking about tech tips and the
-      struggles of a junior developer."/>
-      <link rel="canonical" href="http://example.com/" />
-      <meta name="robots" content="index, follow"/>
-      <meta name="theme" content={dark? "white":"#111827"}/>
+        <title>Femi's Blog</title>
+        <meta
+          name="description"
+          content="This is a blog talking about tech tips and the
+      struggles of a junior developer."
+        />
+        <link rel="canonical" href="http://example.com/" />
+        <meta name="robots" content="index, follow" />
+        <meta name="theme" content={dark ? "white" : "#111827"} />
+        <meta property="og:type" content="article" />
+        <meta property="og:site_name" content="Femi's Blog" />
+        <meta name="twitter:title" content="Femi's Blog" />
+        <meta
+          name="twitter:description"
+          content="This is a blog talking about tech tips and the
+      struggles of a junior developer."
+        />
       </Head>
       <Overlay />
       <Header setTheme={setTheme} />
       <main className="px-24 py-12 dark:text-slate-400 dark:bg-gray-900 dark:z-50">
-        <Title  />
+        <Title />
         <FirstBlogPost first={first} />
         <section className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {remainder.map((post, index) => (
