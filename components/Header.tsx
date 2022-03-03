@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 
-const Header = () => {
+const Header = ({setTheme}) => {
   return (
     <nav
       className="sticky top-0 z-40 w-full backdrop-blur flex-none 
@@ -19,7 +19,8 @@ const Header = () => {
               <img src="/assets/images/logo.png" alt="logo" />
             </div>
             <div className="grid place-content-center">
-              <span className="block dark:hidden">
+              <button className="transition duration-700 ease-in-out" onClick={()=> setTheme()}>
+              <span className="block dark:hidden transition duration-700 ease-in-out">
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"
@@ -38,7 +39,7 @@ const Header = () => {
                   ></path>
                 </svg>
               </span>
-              <span className="hidden dark:block">
+              <span className="hidden dark:block transition duration-700 ease-in-out">
                 <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
                   <path
                     fillRule="evenodd"
@@ -58,6 +59,7 @@ const Header = () => {
                   ></path>
                 </svg>
               </span>
+              </button>
             </div>
           </div>
         </div>

@@ -5,7 +5,7 @@ const Overlay = () => {
   return (
     <div
       className="absolute z-20 top-0 inset-x-0 flex justify-center
-    overflow-hidden pointer-events-none"
+    overflow-hidden pointer-events-none "
     >
       <div className="w-[180rem] flex-none justify-end">
         <picture>
