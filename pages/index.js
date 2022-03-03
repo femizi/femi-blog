@@ -46,7 +46,7 @@ export default function Home({ posts }) {
           content="This is a blog talking about tech tips and the
       struggles of a junior developer."
         />
-        <link rel="canonical" href="http://example.com/" />
+       
         <meta name="robots" content="index, follow" />
         <meta name="theme" content={dark ? "white" : "#111827"} />
         <meta property="og:type" content="article" />
