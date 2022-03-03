@@ -10,7 +10,7 @@ import Head from "next/head";
 
 const components = { SyntaxHighlighter };
 
-const PostPage = ({ frontMatter: { title, date }, mdxSource }) => {
+const PostPage = ({ frontMatter: { title, date,description }, mdxSource }) => {
   const [dark, setdark] = useState(false);
 
   function setTheme() {
