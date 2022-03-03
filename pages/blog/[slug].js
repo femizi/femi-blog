@@ -5,13 +5,26 @@ import path from "path";
 import matter from "gray-matter";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import Header from "../../components/Header";
+import { useState } from "react";
 
 const components = {  SyntaxHighlighter }
 
 const PostPage = ({ frontMatter: { title, date }, mdxSource }) => {
+  const [dark, setdark] = useState(false)
+  
+  function setTheme() {
+    setDark(!dark);
+  }
+  // const systemPrefersDark = useMediaQuery(
+  //   {
+  //     query: '(prefers-color-scheme: dark)',
+  //   },
+  //   undefined,
+  //   (isSystemDark) => setDark(isSystemDark)
+  // );
   return (
     <div >
-     <Header/> 
+     <Header setTheme={setTheme}/> 
      <main className="px-24 py-12">
      <h1 className="fontbold text-6xl pb-4">{title}</h1>
       <MDXRemote {...mdxSource} components={components}/>
