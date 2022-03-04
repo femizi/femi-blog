@@ -12,8 +12,11 @@ import Header from "../components/Header";
 import Overlay from "../components/Overlay";
 import AvatarOverlay from "../components/AvatarOverlay";
 import { BlogWrapper } from "../components/BlogWrapper";
+import {FirstBlogPostWrapper} from '../components/FirstBlogPostWrapper'
+
 import { useEffect, useState } from "react";
 import Head from "next/head";
+FirstBlogPostWrapper
 
 export default function Home({ posts }) {
   const DynamicHeader = dynamic(() => import("../components/Header"), {
@@ -71,7 +74,15 @@ export default function Home({ posts }) {
       <DynamicHeader setTheme={setTheme} />
       <main className="px-8 lg:px-24 py-12 dark:text-slate-400 dark:bg-gray-900 z-10 dark:z-50">
         <Title />
-        <FirstBlogPost first={first} />
+        
+        <Link href={"/blog/" + first.slug} passHref >
+              <FirstBlogPostWrapper first={first} />
+            </Link>
+        
+        
+      
+
+
         <section className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {remainder.map((post, index) => (
             <Link href={"/blog/" + post.slug} passHref key={index}>
