@@ -61,6 +61,8 @@ export default function Home({ posts }) {
         <meta name="robots" content="index, follow" />
         <meta name="theme" content={dark ? "white" : "#111827"} />
         <meta property="og:type" content="article" />
+        <meta property="og:image" content="/assets/images/logo.png" />
+        <meta name="twitter:creator" content="@sonofpharoh" />
         <meta property="og:site_name" content="Femi's Blog" />
         <meta name="twitter:title" content="Femi's Blog" />
         <meta

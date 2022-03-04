@@ -10,7 +10,7 @@ import Head from "next/head";
 
 const components = { SyntaxHighlighter };
 
-const PostPage = ({ frontMatter: { title, date,description }, mdxSource }) => {
+const PostPage = ({ frontMatter: { title, date,description, thumbnailUrl }, mdxSource }) => {
   const [dark, setdark] = useState(false);
 
   function setTheme() {
@@ -33,6 +33,8 @@ const PostPage = ({ frontMatter: { title, date,description }, mdxSource }) => {
         <title>{title}</title>
         <meta property="og:description" content={description} />
         <meta property="og:site_name" content="Femi's Blog" />
+        <meta property="og:image" content={thumbnailUrl} />
+
         <meta property="og:type" content="article" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
