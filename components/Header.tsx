@@ -1,7 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+import React, { useLayoutEffect, useState } from "react";
+
 
 const Header = ({setTheme}) => {
+ 
+  
   return (
     <nav
       className="sticky top-0 z-40 w-full backdrop-blur flex-none 

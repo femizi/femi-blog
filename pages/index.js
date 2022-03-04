@@ -5,23 +5,30 @@ import path from "path";
 import matter from "gray-matter";
 import Link from "next/link";
 import { useMediaQuery } from "react-responsive";
+import dynamic from "next/dynamic";
 import { FirstBlogPost } from "../components/FirstBlogPost";
 import { Title } from "../components/Title";
 import Header from "../components/Header";
 import Overlay from "../components/Overlay";
 import { BlogWrapper } from "../components/BlogWrapper";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Head from "next/head";
 
 export default function Home({ posts }) {
+  const DynamicHeader = dynamic(() => import("../components/Header"), {
+    ssr: false,
+  });
   const [dark, setDark] = useState(false);
-  // const systemPrefersDark = useMediaQuery(
-  //   {
-  //     query: '(prefers-color-scheme: dark)',
-  //   },
-  //   undefined,
-  //   (isSystemDark) => setDark(!dark)
-  // );
+
+  useEffect(() => {
+    localStorage.setItem("theme", JSON.stringify(dark));
+  }, [dark]);
+  useEffect(() => {
+    const theme = JSON.parse(localStorage.getItem("theme"));
+    if (theme) {
+      setDark(theme);
+    }
+  }, []);
   function setTheme() {
     setDark(!dark);
   }
@@ -35,8 +42,8 @@ export default function Home({ posts }) {
     <div
       className={
         dark
-          ? "relative overflow-y-auto dark:text-slate-200 bg-gray-900 dark"
-          : "relative overflow-y-auto  dark:text-slate-200 "
+          ? "relative overflow-y-auto min-h-screen text-slate-200 bg-gray-900 dark"
+          : "relative overflow-y-auto  min-h-screen "
       }
     >
       <Head>
@@ -46,7 +53,7 @@ export default function Home({ posts }) {
           content="This is a blog talking about tech tips and the
       struggles of a junior developer."
         />
-       
+
         <meta name="robots" content="index, follow" />
         <meta name="theme" content={dark ? "white" : "#111827"} />
         <meta property="og:type" content="article" />
@@ -59,8 +66,8 @@ export default function Home({ posts }) {
         />
       </Head>
       <Overlay />
-      <Header setTheme={setTheme} />
-      <main className="px-24 py-12 dark:text-slate-400 dark:bg-gray-900 dark:z-50">
+      <DynamicHeader setTheme={setTheme} />
+      <main className="px-8 lg:px-24 py-12 dark:text-slate-400 dark:bg-gray-900 dark:z-50">
         <Title />
         <FirstBlogPost first={first} />
         <section className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
