@@ -23,7 +23,7 @@ export default function Home({ posts }) {
     ssr: false,
   });
   const [dark, setDark] = useState(false);
-
+  console.log(posts.sort((a,b)=> b.frontMatter.number - a.frontMatter))
   useEffect(() => {
     localStorage.setItem("theme", JSON.stringify(dark));
   }, [dark]);
@@ -108,6 +108,8 @@ export const getStaticProps = async () => {
       slug: filename.split(".")[0],
     };
   });
+const  sortedPosts= posts.sort((a,b)=>b.frontMatter.number- a.frontMatter.number )
+  
   return {
     props: {
       posts,

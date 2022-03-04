@@ -3,7 +3,7 @@ import React from "react";
 export function FirstBlogPost({first}) {
   return <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div>
-            <img className="rounded-md" src="/assets/images/thumbnail.jpeg" alt="thumbnail" />
+            <img className="rounded-md" src={first.frontMatter.thumbnailUrl} alt="thumbnail" />
           </div>
           <div className="p-1">
             <section>
