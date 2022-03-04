@@ -12,18 +12,18 @@ import Header from "../components/Header";
 import Overlay from "../components/Overlay";
 import AvatarOverlay from "../components/AvatarOverlay";
 import { BlogWrapper } from "../components/BlogWrapper";
-import {FirstBlogPostWrapper} from '../components/FirstBlogPostWrapper'
+import { FirstBlogPostWrapper } from "../components/FirstBlogPostWrapper";
 
 import { useEffect, useState } from "react";
 import Head from "next/head";
-FirstBlogPostWrapper
+FirstBlogPostWrapper;
 
 export default function Home({ posts }) {
   const DynamicHeader = dynamic(() => import("../components/Header"), {
     ssr: false,
   });
   const [dark, setDark] = useState(false);
-  console.log(posts.sort((a,b)=> b.frontMatter.number - a.frontMatter))
+  console.log(posts.sort((a, b) => b.frontMatter.number - a.frontMatter));
   useEffect(() => {
     localStorage.setItem("theme", JSON.stringify(dark));
   }, [dark]);
@@ -70,18 +70,14 @@ export default function Home({ posts }) {
         />
       </Head>
       <Overlay />
-      
+
       <DynamicHeader setTheme={setTheme} />
       <main className="px-8 lg:px-24 py-12 dark:text-slate-400 dark:bg-gray-900 z-10 dark:z-50">
         <Title />
-        
-        <Link href={"/blog/" + first.slug} passHref >
-              <FirstBlogPostWrapper first={first} />
-            </Link>
-        
-        
-      
 
+        <Link href={"/blog/" + first.slug} passHref>
+          <FirstBlogPostWrapper first={first} />
+        </Link>
 
         <section className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {remainder.map((post, index) => (
@@ -108,8 +104,10 @@ export const getStaticProps = async () => {
       slug: filename.split(".")[0],
     };
   });
-const  sortedPosts= posts.sort((a,b)=>b.frontMatter.number- a.frontMatter.number )
-  
+   posts.sort(
+    (a, b) => b.frontMatter.number - a.frontMatter.number
+  );
+
   return {
     props: {
       posts,

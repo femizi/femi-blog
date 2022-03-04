@@ -37,6 +37,7 @@ const PostPage = ({ frontMatter: { title, date,description }, mdxSource }) => {
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:creator" content="@sonofpharoh" />
+        `<meta name="theme-color" content={dark? "#111827": "white" }/>
       </Head>
       <Header setTheme={setTheme} />
       <main className="px-8 lg:px-24 py-12">

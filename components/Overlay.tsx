@@ -9,8 +9,8 @@ const Overlay = () => {
     >
       <div className="w-[180rem] flex-none justify-end">
         <picture>
-          <img className="flex-none max-w-none hidden dark:block" src="/assets/images/dark-gradient.avif" alt=" " />
-          <img className="flex-none max-w-none dark:hidden" src="/assets/images/gradient.avif" alt=" " />
+          <img className="flex-none max-w-none hidden dark:block" src="/assets/images/dark-gradient.avif" alt="overlay " />
+          <img className="flex-none max-w-none dark:hidden" src="/assets/images/gradient.avif" alt="overlay " />
         </picture>
       </div>
     </div>
