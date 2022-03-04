@@ -10,6 +10,7 @@ import { FirstBlogPost } from "../components/FirstBlogPost";
 import { Title } from "../components/Title";
 import Header from "../components/Header";
 import Overlay from "../components/Overlay";
+import AvatarOverlay from "../components/AvatarOverlay";
 import { BlogWrapper } from "../components/BlogWrapper";
 import { useEffect, useState } from "react";
 import Head from "next/head";
@@ -66,8 +67,9 @@ export default function Home({ posts }) {
         />
       </Head>
       <Overlay />
+      
       <DynamicHeader setTheme={setTheme} />
-      <main className="px-8 lg:px-24 py-12 dark:text-slate-400 dark:bg-gray-900 dark:z-50">
+      <main className="px-8 lg:px-24 py-12 dark:text-slate-400 dark:bg-gray-900 z-10 dark:z-50">
         <Title />
         <FirstBlogPost first={first} />
         <section className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

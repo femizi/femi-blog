@@ -14,7 +14,7 @@ const PostPage = ({ frontMatter: { title, date,description }, mdxSource }) => {
   const [dark, setdark] = useState(false);
 
   function setTheme() {
-    setDark(!dark);
+    setdark(!dark);
   }
   // const systemPrefersDark = useMediaQuery(
   //   {
@@ -24,7 +24,11 @@ const PostPage = ({ frontMatter: { title, date,description }, mdxSource }) => {
   //   (isSystemDark) => setDark(isSystemDark)
   // );
   return (
-    <div>
+    <div className={
+      dark
+        ? "relative overflow-y-auto min-h-screen text-slate-200 bg-gray-900 dark"
+        : "relative overflow-y-auto  min-h-screen "
+    }>
       <Head>
         <title>{title}</title>
         <meta property="og:description" content={description} />
@@ -35,7 +39,7 @@ const PostPage = ({ frontMatter: { title, date,description }, mdxSource }) => {
         <meta name="twitter:creator" content="@sonofpharoh" />
       </Head>
       <Header setTheme={setTheme} />
-      <main className="px-24 py-12">
+      <main className="px-8 lg:px-24 py-12">
         <h1 className="fontbold text-6xl pb-4">{title}</h1>
         <MDXRemote {...mdxSource} components={components} />
       </main>
